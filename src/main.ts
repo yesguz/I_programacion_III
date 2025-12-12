@@ -16,7 +16,9 @@ async function bootstrap() {
 
   // Configuración de MVC (Modelo-Vista-Controlador):
   // 1. Definimos dónde se encuentran nuestros archivos de vista (plantillas).
-  //    Usamos 'join' para construir la ruta absoluta a la carpeta 'views'.
+  //    En producción (Vercel), las vistas pueden estar en una ubicación relativa diferente.
+  //    Al usar join(__dirname, '..', 'views') asumimos que main.js está dentro de 'dist' y 'views' está en la raíz.
+  //    Esta configuración suele funcionar bien tanto localmente (src/../views) como en producción (dist/../views).
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
 
   // 2. Establecemos EJS (Embedded JavaScript) como nuestro motor de plantillas
