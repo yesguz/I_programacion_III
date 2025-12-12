@@ -35,16 +35,17 @@ Originalmente implementado en NestJS, el proyecto ha sido migrado a **Fastify** 
 
 ```
 src/
-├── server.ts     # Punto de entrada y definición de todas las rutas
-└── enums.ts      # Definición de tipos Enum
+├── server.ts     # Servidor para ejecución LOCAL (npm run dev)
+├── enums.ts      # Definición de tipos Enum
+└── api/
+    └── serverless.ts # Adaptador especial para Vercel (Serverless Function)
 views/
-├── index.ejs
-├── ejercicio1-form.ejs
-├── ejercicio1-result.ejs
-└── ejercicio2.ejs
-dist/             # <--- CARPETA GENERADA AUTOMÁTICAMENTE
-└── ...           # Contiene el código JavaScript compilado para producción.
+├── ...
+dist/             # Código compilado
 ```
+
+### ⚡ Nota sobre el Despliegue en Vercel
+Para que Fastify funcione correctamente en la arquitectura **Serverless** de Vercel, se utiliza el archivo `src/api/serverless.ts`. Este archivo exporta una función que "puentea" las peticiones HTTP de Vercel hacia la instancia de Fastify, en lugar de mantener un puerto abierto permanentemente.
 
 ## 📚 Arquitectura de Directorios
 
