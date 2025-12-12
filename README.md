@@ -1,4 +1,4 @@
-# Evaluación Práctica 1 - Fastify Edition
+# Evaluación Práctica 1 - Next.js Edition
 
 ### Unidad Curricular: Programación III
 **Estudiante:** Yesmir Guzmán  
@@ -6,62 +6,67 @@
 
 ---
 
-## 🚀 Descripción del Cambio Tecnológico
+## 🚀 Descripción del Proyecto
 
-Originalmente implementado en NestJS, el proyecto ha sido migrado a **Fastify** para demostrar la capacidad de adaptación y el uso de herramientas de alto rendimiento para soluciones backend específicas. Fastify ofrece una arquitectura significativamente más ligera y rápida, ideal para los requerimientos de esta evaluación.
+Este repositorio contiene la resolución de la **Evaluación Práctica 1**, implementada utilizando **Next.js 15 (App Router)**. Se ha optado por este framework moderno para garantizar una arquitectura robusta, escalable y con un excelente rendimiento (Server-Side Rendering).
 
 ## 📋 Ejercicios Resueltos
 
 ### Ejercicio 1: Interceptor de Animal Favorito
-**Lógica:**
-1.  **Ruta GET `/ejercicio1`:** Renderiza `views/ejercicio1-form.ejs` solicitando el nombre.
-2.  **Ruta POST `/ejercicio1`:** El servidor Fastify intercepta la solicitud, extrae el campo `nombreAnimal` del cuerpo (`request.body`) y renderiza `views/ejercicio1-result.ejs` con el dato procesado.
+**Objetivo:** Capturar un dato y mostrarlo en otra vista.
+**Implementación:**
+1.  **Formulario (Client/Server):** Ubicado en `/ejercicio1`. Utiliza un formulario HTML estilizado.
+2.  **Server Action:** La lógica de procesamiento ocurre en el servidor (`action.ts`). La función `submitAnimal` recibe los datos del `FormData`, extrae el nombre y ejecuta una redirección (`redirect`) hacia la página de resultados.
+3.  **Resultado:** La página `/ejercicio1/result` lee el parámetro de búsqueda (`searchParams`) y lo renderiza en pantalla. Esto cumple el requisito de "interceptar y recargar" en una nueva vista.
 
 ### Ejercicio 2: Enums con TypeScript
-**Lógica:**
-1.  Se definen las enumeraciones `GeneroPelicula` y `PaisPelicula` en `src/enums.ts`.
-2.  **Ruta GET `/ejercicio2`:** Convierte estos Enums en arreglos iterables y los pasa a la vista `views/ejercicio2.ejs` para su visualización dinámica.
+**Objetivo:** Uso de enumeraciones para datos constantes.
+**Implementación:**
+1.  **Definición:** Se crearon los Enums `GeneroPelicula` y `PaisPelicula` en `src/types/enums.ts`.
+2.  **Visualización:** La página `/ejercicio2` importa estos tipos, los convierte en arrays iterables (`Object.values`) y genera listas dinámicas dentro de tarjetas con estilo "Glassmorphism".
 
 ---
 
-## 🛠️ Tecnologías
+## 🛠️ Stack Tecnológico
 
-*   **Fastify**: Framework web rápido y de bajo overhead.
-*   **TypeScript**: Lenguaje base para tipado estático.
-*   **EJS**: Motor de plantillas para las vistas.
-*   **Vercel**: Plataforma de despliegue.
+*   **Framework:** Next.js 15 (App Router)
+*   **Lenguaje:** TypeScript
+*   **Estilos:** Vanilla CSS (CSS Modules / Global) con diseño **Glassmorphism**.
+*   **Despliegue:** Vercel (Configuración Zero-Config).
 
-## 📂 Nueva Estructura
+## 📂 Estructura de Directorios
 
 ```
 src/
-├── server.ts     # Servidor para ejecución LOCAL (npm run dev)
-├── enums.ts      # Definición de tipos Enum
-└── api/
-    └── serverless.ts # Adaptador especial para Vercel (Serverless Function)
-views/
-├── ...
-dist/             # Código compilado
+├── app/
+│   ├── layout.tsx       # Estructura global (HTML, Body, Footer)
+│   ├── globals.css      # Estilos globales y variables CSS
+│   ├── page.tsx         # Menú Principal
+│   ├── ejercicio1/      
+│   │   ├── page.tsx     # Vista Formulario
+│   │   ├── action.ts    # Lógica de servidor (Server Action)
+│   │   └── result/
+│   │       └── page.tsx # Vista Resultado
+│   └── ejercicio2/
+│       └── page.tsx     # Vista Enums
+└── types/
+    └── enums.ts         # Definición de Enums
 ```
 
-### ⚡ Nota sobre el Despliegue en Vercel
-Para que Fastify funcione correctamente en la arquitectura **Serverless** de Vercel, se utiliza el archivo `src/api/serverless.ts`. Este archivo exporta una función que "puentea" las peticiones HTTP de Vercel hacia la instancia de Fastify, en lugar de mantener un puerto abierto permanentemente.
+## ⚙️ Cómo Ejecutar
 
-## 📚 Arquitectura de Directorios
+1.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
 
-Es importante entender la función de cada carpeta:
+2.  **Modo Desarrollo:**
+    ```bash
+    npm run dev
+    ```
+    Visita [http://localhost:3000](http://localhost:3000).
 
-*   **`src/` (Source):** Aquí es donde escribimos nuestro código **TypeScript**. Es el código fuente original, legible por humanos.
-*   **`views/`:** Contiene las plantillas HTML/EJS. Estas no se compilan, pero son leídas por el servidor para generar las páginas web.
-*   **`dist/` (Distribution):** Esta carpeta **NO** se toca manualmente.
-    *   **¿Para qué sirve?** El navegador y los servidores como Vercel a veces prefieren ejecutar JavaScript estándar, no TypeScript. La carpeta `dist` contiene la versión "traducida" (compilada) de nuestro código de `src`.
-    *   **¿Puedo borrarla?** ¡Sí! Si la borras, simplemente ejecuta `npm run build` y se creará de nuevo con los cambios más recientes. Es una carpeta temporal de salida.
-
-## ⚙️ Ejecución
-
-1.  **Instalar dependencias:** `npm install`
-2.  **Modo desarrollo:** `npm run dev` (Usa ts-node)
-3.  **Compilar y Ejecutar:** 
+3.  **Compilación para Producción:**
     ```bash
     npm run build
     npm start

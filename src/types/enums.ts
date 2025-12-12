@@ -1,9 +1,12 @@
 /**
- * Definición de Enumeraciones para el Ejercicio 2.
+ * Definición de Enumeraciones (Enums) para el Ejercicio 2.
  * Estudiante: Yesmir Guzmán - Cédula: 20130682
+ * 
+ * Estas enumeraciones permiten tipar y restringir los valores para Géneros y Países,
+ * facilitando el mantenimiento y la escalabilidad del código.
  */
 
-// Clasificación de Géneros de películas
+// Enumeración para Géneros de Películas
 export enum GeneroPelicula {
     ACCION = 'Acción',
     COMEDIA = 'Comedia',
@@ -13,7 +16,7 @@ export enum GeneroPelicula {
     AVENTURA = 'Aventura'
 }
 
-// Origen de las películas
+// Enumeración para Países de Origen
 export enum PaisPelicula {
     USA = 'Estados Unidos',
     ESPANA = 'España',
