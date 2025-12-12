@@ -17,12 +17,12 @@ export default function Ejercicio2Page() {
 
                 {/* Tarjeta de Géneros */}
                 <div className="glass-panel">
-                    <h2 style={{ borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem' }}>
+                    <h2 style={{ borderBottom: '1px solid #eaeaea', paddingBottom: '1rem', color: '#333' }}>
                         🎬 Géneros
                     </h2>
                     <ul style={{ listStyle: 'none', padding: 0 }}>
                         {generos.map((genero, index) => (
-                            <li key={index} style={{ padding: '0.8rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#e2e8f0' }}>
+                            <li key={index} style={{ padding: '0.8rem 0', borderBottom: '1px solid #f0f0f0', color: '#555' }}>
                                 {genero}
                             </li>
                         ))}
@@ -31,12 +31,12 @@ export default function Ejercicio2Page() {
 
                 {/* Tarjeta de Países */}
                 <div className="glass-panel">
-                    <h2 style={{ borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem' }}>
+                    <h2 style={{ borderBottom: '1px solid #eaeaea', paddingBottom: '1rem', color: '#333' }}>
                         🌍 Países
                     </h2>
                     <ul style={{ listStyle: 'none', padding: 0 }}>
                         {paises.map((pais, index) => (
-                            <li key={index} style={{ padding: '0.8rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#e2e8f0' }}>
+                            <li key={index} style={{ padding: '0.8rem 0', borderBottom: '1px solid #f0f0f0', color: '#555' }}>
                                 {pais}
                             </li>
                         ))}
